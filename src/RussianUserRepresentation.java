@@ -20,6 +20,7 @@ public class RussianUserRepresentation {
         );
 
         var ending = user.getFatherName().substring(user.getFatherName().length() - 4);
+
         this.Gender = switch (ending) {
             case "ович", "евич" -> "М.";
             case "овна", "евна" -> "Ж.";
@@ -50,10 +51,12 @@ public class RussianUserRepresentation {
     private String formatAge(int age) {
         if (age % 10 == 1 && age % 100 != 11) {
             return age + " год";
-        } else if ((age % 10 >= 2 && age % 10 <= 4) && (age % 100 < 10 || age % 100 >= 20)) {
-            return age + " года";
-        } else {
-            return age + " лет";
         }
+
+        if ((age % 10 >= 2 && age % 10 <= 4) && (age % 100 < 10 || age % 100 >= 20)) {
+            return age + " года";
+        }
+
+        return age + " лет";
     }
 }
