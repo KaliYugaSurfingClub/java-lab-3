@@ -22,7 +22,7 @@ public class Main {
             System.out.printf("Введите дату рождения %s\n", datePattern);
             builder.birthDay(LocalDate.parse(scanner.next(), DateTimeFormatter.ofPattern(datePattern)));
 
-            var representation = new RussianUserRepresentation(builder.build());
+            var representation = new UserRussianRepresentation(builder.build());
 
             System.out.println(representation);
         } catch (IllegalAccessError e) {

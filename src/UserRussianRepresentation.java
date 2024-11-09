@@ -1,12 +1,12 @@
 import java.time.LocalDate;
 import java.time.Period;
 
-public class RussianUserRepresentation {
+public class UserRussianRepresentation {
     private String FIO;
-    private String Gender;
-    private String Age;
+    private String gender;
+    private String age;
 
-    public RussianUserRepresentation(User user) {
+    public UserRussianRepresentation(User user) {
         this.FIO = String.format(
                 "%s %c.%c.",
                 user.getSurname(),
@@ -14,22 +14,22 @@ public class RussianUserRepresentation {
                 user.getFatherName().charAt(0)
         );
 
-        this.Age = formatAge(Period
+        this.age = formatAge(Period
                 .between(user.getBirthDay(), LocalDate.now())
                 .getYears()
         );
 
         var ending = user.getFatherName().substring(user.getFatherName().length() - 4);
 
-        this.Gender = switch (ending) {
+        this.gender = switch (ending) {
             case "ович", "евич" -> "М.";
             case "овна", "евна" -> "Ж.";
-            default -> "unknown";
+            default -> "не опредленн";
         };
     }
 
     public String getAge() {
-        return Age;
+        return age;
     }
 
     public String getFIO() {
@@ -37,14 +37,14 @@ public class RussianUserRepresentation {
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
     @Override
     public String toString() {
         return String.format(
                 "ФИО: %s\n Пол: %s\n Возраст: %s\n",
-                FIO, Gender, Age
+                FIO, gender, age
         );
     }
 
