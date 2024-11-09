@@ -1,10 +1,10 @@
 import java.time.LocalDate;
 
 public class User {
-    private final String name;
-    private final String surname;
-    private final String fatherName;
-    private final LocalDate birthDay;
+    private String name;
+    private String surname;
+    private String fatherName;
+    private LocalDate birthDay;
 
     private User(Builder builder) {
         this.name = builder.name;

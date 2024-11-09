@@ -2,9 +2,9 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class RussianUserRepresentation {
-    private final String FIO;
-    private final String Gender;
-    private final String Age;
+    private String FIO;
+    private String Gender;
+    private String Age;
 
     public RussianUserRepresentation(User user) {
         this.FIO = String.format(
@@ -19,12 +19,32 @@ public class RussianUserRepresentation {
                 .getYears()
         );
 
-        var ending = user.getFatherName().substring(user.getFatherName().length()-4);
+        var ending = user.getFatherName().substring(user.getFatherName().length() - 4);
         this.Gender = switch (ending) {
             case "ович", "евич" -> "М.";
             case "овна", "евна" -> "Ж.";
             default -> "unknown";
         };
+    }
+
+    public String getAge() {
+        return Age;
+    }
+
+    public String getFIO() {
+        return FIO;
+    }
+
+    public String getGender() {
+        return Gender;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "ФИО: %s\n Пол: %s\n Возраст: %s\n",
+                FIO, Gender, Age
+        );
     }
 
     private String formatAge(int age) {
@@ -35,13 +55,5 @@ public class RussianUserRepresentation {
         } else {
             return age + " лет";
         }
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "ФИО: %s\n Пол: %s\n Возраст: %s\n",
-                FIO, Gender, Age
-        );
     }
 }
